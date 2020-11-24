@@ -1,6 +1,7 @@
 package steps;
 
 import apiUtils.apiInvocation;
+import com.cucumber.listener.Reporter;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -32,7 +33,7 @@ public class verifyNumberOfRaces {
     public void there_should_be_circuits_in_the_list_returned(String numberOfCircuits) {
         xmlPath = new XmlPath(response.asString());
         String totalNumberOfRacesForTheSeason = xmlPath.get("MRData.@total");
-        System.out.println("totalNumberOfRacesForTheSeason" + totalNumberOfRacesForTheSeason);
+        Reporter.addStepLog("totalNumberOfRacesForTheSeason => " + totalNumberOfRacesForTheSeason);
         Assert.assertTrue("Number of Races do not match", numberOfCircuits.equals(totalNumberOfRacesForTheSeason));
     }
 }
